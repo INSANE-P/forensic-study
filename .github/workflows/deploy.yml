@@ -1,0 +1,47 @@
+# main 브랜치에 push되면 자동으로 빌드 후 GitHub Pages에 배포한다.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # 수동 실행도 허용
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시에 한 번만 배포되도록 (중간 실행은 취소)
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # GITHUB_ACTIONS 환경변수가 있으면 vite.config.ts가 base를 /<레포명>/ 으로 설정
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
