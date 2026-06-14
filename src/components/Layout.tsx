@@ -2,11 +2,9 @@ import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import TierEmblem from "./TierEmblem";
+import BrandLogo from "./BrandLogo";
 import { useGrowth } from "./GrowthProvider";
 import { getIdentity } from "@/lib/storage";
-
-// public/ 자산은 base 경로를 붙여 참조 (GH Pages 서브경로 대응)
-const LOGO = `${import.meta.env.BASE_URL}df-logo.png`;
 
 const NAV = [
   { to: "/", label: "대시보드", end: true, icon: "home" },
@@ -84,12 +82,7 @@ function Brand({ compact = false, onClick }: { compact?: boolean; onClick?: () =
       aria-label="대시보드로 이동"
       className="flex items-center gap-3 rounded-xl transition-opacity hover:opacity-80"
     >
-      <img
-        src={LOGO}
-        alt="디지털 포렌식 마스코트"
-        className={compact ? "h-9 w-9" : "h-11 w-11"}
-        draggable={false}
-      />
+      <BrandLogo className={compact ? "h-9 w-9" : "h-11 w-11"} />
       <div className="leading-tight">
         <div className="text-[0.95rem] font-extrabold text-foreground">디지털 포렌식</div>
         <div className="text-xs font-medium text-muted">시험 공부 노트</div>

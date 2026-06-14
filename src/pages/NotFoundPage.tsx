@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-
-const LOGO = `${import.meta.env.BASE_URL}df-logo.png`;
+import BrandLogo from "@/components/BrandLogo";
 
 export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <img src={LOGO} alt="" className="h-24 w-24 opacity-90" draggable={false} />
+      <BrandLogo className="h-24 w-24 opacity-90" alt="" />
       <h1 className="mt-5 text-2xl font-extrabold text-foreground">페이지를 찾을 수 없어요</h1>
       <p className="mt-2 text-muted-strong">주소가 바뀌었거나 없는 페이지예요.</p>
       <Link

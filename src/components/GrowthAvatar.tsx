@@ -8,8 +8,7 @@
 import { useState } from "react";
 import { tierAt } from "@/lib/growth";
 import TierEmblem from "./TierEmblem";
-
-const LOGO = `${import.meta.env.BASE_URL}df-logo.png`;
+import BrandLogo from "./BrandLogo";
 
 function Sparkle({ style }: { style?: React.CSSProperties }) {
   return (
@@ -40,7 +39,6 @@ export default function GrowthAvatar({
   const [failed, setFailed] = useState(false);
   const lv = frameLevel ?? level;
   const t = tierAt(lv);
-  const imgSrc = src || LOGO;
   const isLegend = lv >= 6;
   const pad = Math.round(size * 0.045) + 2;
 
@@ -65,12 +63,14 @@ export default function GrowthAvatar({
         <div className="absolute inset-0 rounded-full" style={{ background: ringBg, boxShadow: glow }} aria-hidden="true" />
         {/* 아바타 */}
         <div className="absolute overflow-hidden rounded-full bg-surface" style={{ inset: pad }}>
-          {!failed ? (
-            <img src={imgSrc} alt="" draggable={false} onError={() => setFailed(true)} className="h-full w-full select-none object-cover" />
-          ) : (
+          {failed ? (
             <div className="flex h-full w-full items-center justify-center bg-brand-blue/15 font-extrabold text-brand-blue" style={{ fontSize: size * 0.38 }}>
               {initial}
             </div>
+          ) : src ? (
+            <img src={src} alt="" draggable={false} onError={() => setFailed(true)} className="h-full w-full select-none object-cover" />
+          ) : (
+            <BrandLogo className="h-full w-full select-none object-cover" alt="" />
           )}
         </div>
 
