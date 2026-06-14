@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>디지털 포렌식 시험 공부</title>
+    <!--
+      GitHub Pages SPA 폴백.
+      존재하지 않는 경로(딥링크/새로고침)로 들어오면, 경로를 쿼리스트링으로 인코딩해
+      base(/<레포명>/)로 리다이렉트한다. index.html 의 복원 스크립트가 다시 원래 경로로 되돌린다.
+      참고: rafgraph/spa-github-pages 방식.
+
+      pathSegmentsToKeep:
+        - 프로젝트 페이지(https://유저.github.io/레포명/) 배포면 1 (현재 설정)
+        - 사용자 페이지(https://유저.github.io/) 루트 배포면 0 으로 변경
+    -->
+    <script>
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

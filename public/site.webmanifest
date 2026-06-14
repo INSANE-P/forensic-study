@@ -1,0 +1,16 @@
+{
+  "name": "디지털 포렌식 시험 공부",
+  "short_name": "포렌식 공부",
+  "description": "한 학기 전 범위 기출 문제풀이 + 채점 + 핵심 개념 정리",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f4fa",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    { "src": "./favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
